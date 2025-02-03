@@ -41,7 +41,7 @@
       "request": "launch",
       "preLaunchTask": "build-desktop",
       // If you have changed target frameworks, make sure to update the program path.
-      "program": "${workspaceFolder}/professioncraft/bin/Debug/net8.0-desktop/professioncraft.dll",
+      "program": "${workspaceFolder}/professioncraft/bin/Debug/net8.0-desktop/professioncraft.exe",
       "args": [],
       "launchSettingsProfile": "professioncraft (Desktop)",
       "env": {

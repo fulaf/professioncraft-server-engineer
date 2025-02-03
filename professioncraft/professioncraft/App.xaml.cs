@@ -12,7 +12,17 @@ public partial class App : Application
     {
         this.InitializeComponent();
     }
+public class ThemeConfig
+{
+    public string PrimaryColor { get; set; }
+    public string SecondaryColor { get; set; }
+    public string AccentColor { get; set; }
+}
 
+// 读取配置文件
+var configPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "theme.json");
+var json = File.ReadAllText(configPath);
+var theme = JsonSerializer.Deserialize<ThemeConfig>(json);
     protected Window? MainWindow { get; private set; }
     protected IHost? Host { get; private set; }
 
@@ -22,6 +32,7 @@ public partial class App : Application
             // Add navigation support for toolkit controls such as TabBar and NavigationView
             .UseToolkitNavigation()
             .Configure(host => host
+
 #if DEBUG
                 // Switch to Development environment when running in DEBUG
                 .UseEnvironment(Environments.Development)
@@ -108,6 +119,49 @@ public partial class App : Application
                     new ("Second", View: views.FindByViewModel<SecondModel>()),
                 ]
             )
+        );
+    }
+}
+// 在 App.xaml.cs 中初始化
+public sealed partial class App : Application
+{
+    protected override void OnLaunched(LaunchActivatedEventArgs args)
+    {
+        // 加载配置文件
+        var themeConfig = LoadThemeConfig();
+
+        // 将颜色添加到全局资源
+        Application.Current.Resources["PrimaryColor"] = ColorFromHex(themeConfig.PrimaryColor);
+        Application.Current.Resources["SecondaryColor"] = ColorFromHex(themeConfig.SecondaryColor);
+        // Code ommited for brevity
+
+    if (MainWindow.Content is not Shell shell)
+    {
+        shell = new Shell();
+
+        MainWindow.Content = shell;
+
+        shell.RootFrame.NavigationFailed += OnNavigationFailed;
+    }
+
+    if (shell.RootFrame.Content == null)
+    {
+        shell.RootFrame.Navigate(typeof(MainPage), args.Arguments);
+    }
+
+        // 启动主界面
+        Window.Current.Content = new MainPage();
+        Window.Current.Activate();
+    }
+
+    private Color ColorFromHex(string hex)
+    {
+        hex = hex.Replace("#", "");
+        return Color.FromArgb(
+            Convert.ToByte(hex.Substring(0, 2), 16),
+            Convert.ToByte(hex.Substring(2, 2), 16),
+            Convert.ToByte(hex.Substring(4, 2), 16),
+            Convert.ToByte(hex.Substring(6, 2), 16)
         );
     }
 }

@@ -13,7 +13,7 @@
     <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
     <ApplicationVersion>1</ApplicationVersion>
     <!-- Package Publisher -->
-    <ApplicationPublisher>professioncraft</ApplicationPublisher>
+    <ApplicationPublisher>横扫只因</ApplicationPublisher>
     <!-- Package Description -->
     <Description>professioncraft powered by Uno Platform.</Description>
     <!--
@@ -47,6 +47,14 @@
       ThemeService;
     </UnoFeatures>
     <AndroidSdkDirectory>/home/user/Android/Sdk</AndroidSdkDirectory>
+    <!-- 目标框架 -->
+    <!--    <TargetFramework>net8.0</TargetFramework>-->
+    <!-- 指定运行时标识符（RID） --> <!-- 启用自包含发布 -->
+    <SelfContained>true</SelfContained>
+    <!-- 可选：生成单个文件 -->
+    <PublishSingleFile>true</PublishSingleFile>
+    <!-- 可选：启用剪裁未使用代码（减少体积，但有风险） -->
+    <PublishTrimmed>true</PublishTrimmed>
   </PropertyGroup>
 
 </Project>
