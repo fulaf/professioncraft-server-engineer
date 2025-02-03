@@ -2,54 +2,28 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "build-wasm",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "build",
-        "${workspaceFolder}/professioncraft/professioncraft.csproj",
-        "/property:GenerateFullPaths=true",
-        "/property:TargetFramework=net8.0-browserwasm",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
-      "label": "publish-wasm",
-      "command": "dotnet",
-      "type": "process",
-      "args": [
-        "publish",
-        "${workspaceFolder}/professioncraft/professioncraft.csproj",
-        "/property:GenerateFullPaths=true",
-        "/property:TargetFramework=net8.0-browserwasm",
-        "/consoleloggerparameters:NoSummary"
-      ],
-      "problemMatcher": "$msCompile"
-    },
-    {
       "label": "build-desktop",
       "command": "dotnet",
       "type": "process",
       "args": [
         "build",
-        "${workspaceFolder}/professioncraft/professioncraft.csproj",
-        "/property:GenerateFullPaths=true",
-        "/property:TargetFramework=net8.0-desktop",
-        "/consoleloggerparameters:NoSummary"
+        "${workspaceFolder}/professioncraft/professioncraft/professioncraft.csproj",
+        "-c",
+        "Debug"
       ],
       "problemMatcher": "$msCompile"
     },
     {
-      "label": "publish-desktop",
+      "label": "build-wasm",
       "command": "dotnet",
       "type": "process",
       "args": [
-        "publish",
-        "${workspaceFolder}/professioncraft/professioncraft.csproj",
-        "/property:GenerateFullPaths=true",
-        "/property:TargetFramework=net8.0-desktop",
-        "/consoleloggerparameters:NoSummary"
+        "build",
+        "${workspaceFolder}/professioncraft/professioncraft/professioncraft.csproj",
+        "-c",
+        "Debug",
+        "-f",
+        "net8.0-browserwasm"
       ],
       "problemMatcher": "$msCompile"
     }
